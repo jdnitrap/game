@@ -88,7 +88,7 @@
     description = "bob";
     extraGroups = [ "networkmanager" "wheel" "input" "audio" ];
     packages = with pkgs; [
-    #  thunderbird
+    
     ];
   };
 
