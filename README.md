@@ -1,0 +1,2 @@
+# game
+Nixos Gaming setup
