@@ -11,6 +11,7 @@
     ./video.nix
 #    ./specialboot.nix
 	./sound.nix
+	./autoupdate.nix
     ];
 
   # Bootloader.
