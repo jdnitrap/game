@@ -1,1 +1,2 @@
 
+networking.firewall.enable = true;
