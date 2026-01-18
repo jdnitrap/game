@@ -156,14 +156,7 @@ nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
 documentation.nixos.enable = false;
 
 
-##Update
 
-system.autoUpgrade = {
-  enable = true;
-  allowReboot = false;  # Allows automatic reboot if necessary
-  dates = "02:00";     # Schedule updates at 2 AM
-  randomizedDelaySec = "45min";  # Random delay to avoid simultaneous updates
-};
 
 
 
