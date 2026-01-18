@@ -80,7 +80,7 @@
 
 
   
-   networking.firewall.enable = true;
+ 
 
  
   system.stateVersion = "master"; #d you read the comment?
