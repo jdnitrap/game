@@ -1,7 +1,7 @@
 ##pkgs.nix
 
 
-
+nixpkgs.config.allowUnfree = true;
 
 
 # Install firefox.
