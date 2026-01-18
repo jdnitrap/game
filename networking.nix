@@ -1,3 +1,7 @@
+##networking.nix
+
+{ config, lib, pkgs, ... }:
+{
 
 networking.hostName = "gaming"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -8,3 +12,4 @@ networking.hostName = "gaming"; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
+}
