@@ -12,6 +12,20 @@
 #    ./specialboot.nix
 	./sound.nix
 	./autoupdate.nix
+	./boot.nix
+	./firewall.nix
+	./game_controller.nix
+	./networking.nix
+	./pkgs.nix
+	./plasma.nix
+	./sound.ni
+	./steam.nix
+	./system.nix
+	./system_state_version.nix
+	./video.nix
+	./expermental_features.nix
+	./exclude_stuff_from_system.nix
+	./bluetooth.nix
     ];
 
   # Bootloader.
