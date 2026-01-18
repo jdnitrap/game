@@ -162,40 +162,6 @@ documentation.nixos.enable = false;
 
 
 
- # hardware.graphics.enable = true;
- #services.xserver.videoDrivers = [ "nvidia"];
- #hardware.nivida = {
-  #enable = true;
-  #open = true;
-  #modesetting.enable = true;
-    #package = config.boot.kernelPackages.nvidiaPackages.stable;
-  #  nvidiaSettings = true;
-    #powerManagement.enable = false;
-    #powerManagement.finegrained = false;
-   # };
-
-
-
-
-    # For offloading, `modesetting` is needed additionally,
-  # otherwise the X-server will be running permanently on nvidia,
-  # thus keeping the GPU always on (see `nvidia-smi`).
-  #services.xserver.videoDrivers = [
-   # "modesetting"  # example for Intel iGPU; use "amdgpu" here instead if your iGPU is AMD
-    #"nvidia"
-  #];
-
-  hardware.nvidia.prime = {
-  #  offload = {
-   #    enable = true;
-    #   enableOffloadCmd = true;
-     #  };
-#
-
-   intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
-    #amdgpuBusId = "PCI:54:0:0"; # If you have an AMD iGPU
- };
 
 
 
