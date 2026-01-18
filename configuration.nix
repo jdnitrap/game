@@ -205,7 +205,7 @@ system.autoUpgrade = {
 
 
 
-nix.settings.experimental-features = [ "nix-command"];
+nix.settings.experimental-features = [ "nix-command" "nix" "flakes"];
 
 
 
