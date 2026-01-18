@@ -83,7 +83,7 @@
  
 
  
-  system.stateVersion = "master"; #d you read the comment?
+  
   
 
 
@@ -97,25 +97,6 @@
 
 #hardware.xone.enable = true;
 #hardware.xpadneo.enable = true;
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-nix.settings.experimental-features = [ "nix-command" "nix" "flakes"];
-
-
 
 
 
