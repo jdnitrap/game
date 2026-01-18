@@ -1,6 +1,6 @@
 #sound.nix
 
- config, lib, pkgs, ... }:
+ { config, lib, pkgs, ... }:
 {
 
 # Enable sound with pipewire.
