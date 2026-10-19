@@ -1,6 +1,9 @@
-##game_controller.nix
+# game_controller.nix
 { config, lib, pkgs, ... }:
 {
-#hardware.xone.enable = true;
-#hardware.xpadneo.enable = true;
+  # Xbox One / Series controllers (wired or with the official dongle)
+  hardware.xone.enable = true;
+
+  # Xbox One / Series controllers over Bluetooth
+  hardware.xpadneo.enable = true;
 }

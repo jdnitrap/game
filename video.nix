@@ -1,79 +1,39 @@
-#video.nix
+# video.nix
+# Hybrid Intel Raptor Lake-S UHD + NVIDIA RTX 5050 Laptop (Blackwell)
 
 { config, lib, pkgs, ... }:
 {
-
-  # Enable OpenGL
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;   # needed for Steam/Proton/Wine
   };
 
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  # modesetting for the Intel iGPU + nvidia for the dGPU
+  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
 
   hardware.nvidia = {
-
-    # Modesetting is required.
     modesetting.enable = true;
 
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
-    # of just the bare essentials.
+    # Save/restore VRAM on suspend (helps avoid corruption after wake)
     powerManagement.enable = true;
 
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
+    # Fine-grained power management (safe on Turing and newer, including Blackwell)
+    powerManagement.finegrained = true;
 
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of
-    # supported GPUs is at:
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-    # Only available from driver 515.43.04+
-    open = false;
+    # Blackwell supports the open kernel modules
+    open = true;
 
-    # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    prime = {
+      # Offload so the RTX 5050 stays asleep until needed
+      offload.enable = true;
+      offload.enableOffloadCmd = true;   # provides the `nvidia-offload` command
+
+      intelBusId = "PCI:0@0:2:0";
+      nvidiaBusId = "PCI:1@0:0:0";
+    };
   };
-
- # hardware.graphics.enable = true;
- #services.xserver.videoDrivers = [ "nvidia"];
- #hardware.nivida = {
-  #enable = true;
-  #open = true;
-  #modesetting.enable = true;
-    #package = config.boot.kernelPackages.nvidiaPackages.stable;
-  #  nvidiaSettings = true;
-    #powerManagement.enable = false;
-    #powerManagement.finegrained = false;
-   # };
-
-
-
-
-    # For offloading, `modesetting` is needed additionally,
-  # otherwise the X-server will be running permanently on nvidia,
-  # thus keeping the GPU always on (see `nvidia-smi`).
-  #services.xserver.videoDrivers = [
-   # "modesetting"  # example for Intel iGPU; use "amdgpu" here instead if your iGPU is AMD
-    #"nvidia"
-  #];
-
-  hardware.nvidia.prime = {
-  #  offload = {
-   #    enable = true;
-    #   enableOffloadCmd = true;
-     #  };
-#
-
-   intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
-    #amdgpuBusId = "PCI:54:0:0"; # If you have an AMD iGPU
- };
-  }
+}
