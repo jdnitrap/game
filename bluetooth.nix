@@ -1,28 +1,21 @@
-##bluetooth.nix
-
+# bluetooth.nix
+# Configured with Microsoft / Xbox Bluetooth controllers in mind (uses xpadneo)
 { config, lib, pkgs, ... }:
 {
-
-
-hardware.bluetooth = {
-    enable = true; # enables support for Bluetooth
-    powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
     settings = {
       General = {
-        Privacy = "device";
+        # Helps with pairing Xbox / Microsoft Bluetooth controllers
         JustWorksRepairing = "always";
-        Class = "0x000100";
         FastConnectable = "true";
+        Privacy = "device";
+        Class = "0x000100";
       };
     };
-
-hardware.bluetooth.enable = true;
-#hardware.bluetooth.settings = {
- # General = {
-#    FastConnectable = true;
-#  };
-#};
-#services.blueman.enable = true;
-hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   };
+
+  # Optional GUI for managing Bluetooth devices
+  services.blueman.enable = true;
 }

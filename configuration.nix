@@ -1,15 +1,13 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# configuration.nix
+# Flake-based NixOS gaming host
 
 { config, pkgs, lib, inputs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = [
     ./hardware-configuration.nix
     ./video.nix
-    # ./specialboot.nix          # uncomment if you want the battery-saver specialisation
+    # ./specialboot.nix          # uncomment for battery-saver specialisation
     ./sound.nix
     ./autoupdate.nix
     ./boot.nix
@@ -20,9 +18,14 @@
     ./plasma.nix
     ./steam.nix
     ./system.nix
+    ./users.nix
+    ./laptop.nix
     ./system_state_version.nix
     ./experimental-features.nix
     ./exclude_stuff_from_system.nix
     ./bluetooth.nix
-    ];
+  ];
+
+  # Hostname matches the flake nixosConfigurations.gaming
+  networking.hostName = "gaming";
 }

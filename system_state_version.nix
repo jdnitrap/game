@@ -1,6 +1,7 @@
-##system_state_version.nix
+# system_state_version.nix
 { config, lib, pkgs, ... }:
 {
-
-system.stateVersion = "master";
+  # Set to the release you first installed (or a recent one when migrating).
+  # Using a concrete version is safer than "master".
+  system.stateVersion = "25.11";
 }

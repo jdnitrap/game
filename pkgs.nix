@@ -8,6 +8,9 @@
   # GameMode
   programs.gamemode.enable = true;
 
+  # Gamescope (frame pacing, HDR, nested sessions)
+  programs.gamescope.enable = true;
+
   environment.systemPackages = with pkgs; [
     steam
     lutris
@@ -15,6 +18,7 @@
     wine
     mangohud
     protonup-qt
+    gamescope
     atlauncher
     prismlauncher
     hmcl
