@@ -31,8 +31,9 @@ Both start with password `changeme`. Change them immediately after first login (
 - Xbox / Microsoft Bluetooth controllers (`hardware.xone` + `hardware.xpadneo`)
 - Laptop power management (`power-profiles-daemon`, lid suspend on battery)
 - PipeWire, Plasma 6, SDDM
+- Battery-saver specialisation (boot with `specialisation=battery-saver` to run on the iGPU only)
 
 ## Notes
 
 - Bluetooth is tuned for Microsoft / Xbox controllers (JustWorksRepairing=always).
-- Battery-saver specialisation is available in `specialboot.nix` (currently commented out).
+- To use the battery-saver specialisation: `sudo nixos-rebuild switch --flake .#gaming --specialisation battery-saver` (or select it at the boot menu after a rebuild).
