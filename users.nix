@@ -4,14 +4,14 @@
   users.users.nimda = {
     isNormalUser = true;
     description = "Admin";
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" "gamemode" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" "gamemode" "bluetooth" ];
     initialPassword = "changeme";  # change immediately after first login
   };
 
-  users.users.user1 = {
+  users.users.john = {
     isNormalUser = true;
-    description = "User 1";
-    extraGroups = [ "networkmanager" "video" "audio" "input" "gamemode" ];
+    description = "John";
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" "gamemode" "bluetooth" ];
     initialPassword = "changeme";  # change immediately after first login
   };
 
