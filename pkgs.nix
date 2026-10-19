@@ -18,6 +18,7 @@
     wine
     mangohud
     protonup-qt
+    proton-ge-bin
     gamescope
     atlauncher
     prismlauncher
