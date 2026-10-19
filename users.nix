@@ -1,7 +1,7 @@
 # users.nix
 { config, lib, pkgs, ... }:
 {
-  users.users.nimda = {
+  users.users.admin = {
     isNormalUser = true;
     description = "Admin";
     extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" "gamemode" "bluetooth" ];

@@ -6,7 +6,7 @@ Tracks **nixpkgs master**.
 
 ## Users
 
-- `nimda` — admin (wheel)
+- `admin` — admin (wheel)
 - `john` — admin (wheel)
 
 Both start with password `changeme`. Change them immediately after first login (`passwd`).
