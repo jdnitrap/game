@@ -8,9 +8,9 @@
     initialPassword = "changeme";  # change immediately after first login
   };
 
-  users.users.john = {
+  users.users.user1 = {
     isNormalUser = true;
-    description = "John";
+    description = "User 1";
     extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" "gamemode" "bluetooth" ];
     initialPassword = "changeme";  # change immediately after first login
   };

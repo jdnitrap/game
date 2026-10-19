@@ -1,5 +1,5 @@
 # configuration.nix
-# Flake-based NixOS gaming host
+# Flake-based NixOS gaming + AI host
 
 { config, pkgs, lib, inputs, ... }:
 
@@ -25,5 +25,6 @@
     ./exclude_stuff_from_system.nix
     ./bluetooth.nix
     ./gc.nix
+    ./ai.nix
   ];
 }

@@ -1,13 +1,13 @@
 # game
 
-NixOS gaming flake (hybrid Intel + NVIDIA RTX 5050 Laptop).
+NixOS gaming + AI flake (hybrid Intel + NVIDIA RTX 5050 Laptop).
 
 Tracks **nixpkgs master**.
 
 ## Users
 
 - `admin` — admin (wheel)
-- `john` — admin (wheel)
+- `user1` — admin (wheel)
 
 Both start with password `changeme`. Change them immediately after first login (`passwd`).
 
@@ -27,13 +27,16 @@ Both start with password `changeme`. Change them immediately after first login (
 ## Features
 
 - PRIME offload for the RTX 5050 (`nvidia-offload`)
-- Steam, Lutris, Heroic, GameMode, Gamescope, MangoHud
+- Steam, Lutris, Heroic, GameMode, Gamescope, MangoHud, Proton-GE
+- Steam gamescope session
 - Xbox / Microsoft Bluetooth controllers (`hardware.xone` + `hardware.xpadneo`)
 - Laptop power management (`power-profiles-daemon`, lid suspend on battery)
-- PipeWire, Plasma 6, SDDM
-- Battery-saver specialisation (boot with `specialisation=battery-saver` to run on the iGPU only)
+- PipeWire, Plasma 6 (Wayland default), SDDM
+- Battery-saver specialisation
+- Local AI stack: CUDA, Ollama, PyTorch (CUDA), Transformers, Jupyter
 
 ## Notes
 
 - Bluetooth is tuned for Microsoft / Xbox controllers (JustWorksRepairing=always).
 - To use the battery-saver specialisation: `sudo nixos-rebuild switch --flake .#gaming --specialisation battery-saver` (or select it at the boot menu after a rebuild).
+- For GPU-accelerated AI work, run commands under `nvidia-offload` (e.g. `nvidia-offload ollama serve` or `nvidia-offload jupyter notebook`).
