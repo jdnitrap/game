@@ -1,4 +1,6 @@
 # specialboot.nix
+# Battery-saver specialisation: disables NVIDIA offload/power management
+# so the system can run on the Intel iGPU only.
 { config, lib, pkgs, ... }:
 {
   specialisation = {
@@ -6,10 +8,10 @@
       system.nixos.tags = [ "battery-saver" ];
       hardware.nvidia = {
         prime.offload.enable = lib.mkForce false;
+        prime.offload.enableOffloadCmd = lib.mkForce false;
         powerManagement.enable = lib.mkForce false;
-        # Leave the iGPU only
+        powerManagement.finegrained = lib.mkForce false;
       };
-      # Optionally disable the NVIDIA driver entirely here if desired
     };
   };
 }

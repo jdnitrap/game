@@ -7,7 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     ./video.nix
-    # ./specialboot.nix          # uncomment for battery-saver specialisation
+    ./specialboot.nix          # battery-saver specialisation
     ./sound.nix
     ./autoupdate.nix
     ./boot.nix
@@ -25,7 +25,4 @@
     ./exclude_stuff_from_system.nix
     ./bluetooth.nix
   ];
-
-  # Hostname matches the flake nixosConfigurations.gaming
-  networking.hostName = "gaming";
 }
