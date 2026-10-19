@@ -24,5 +24,6 @@
     ./experimental-features.nix
     ./exclude_stuff_from_system.nix
     ./bluetooth.nix
+    ./gc.nix
   ];
 }
