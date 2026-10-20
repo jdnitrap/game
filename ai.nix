@@ -1,59 +1,65 @@
 # ai.nix
-# Local AI / ML experimentation on the RTX 5050
+# Local AI on the RTX 5050 — both ready-to-run tools and building your own
 { config, lib, pkgs, ... }:
 {
   # CUDA support (needed for GPU-accelerated frameworks)
   hardware.nvidia.cudaSupport = true;
 
   environment.systemPackages = with pkgs; [
-    # Local LLM runners
+    # ---- Ready-to-run ----
     ollama
     llama-cpp
 
-    # Python + common ML / AI stack (CUDA builds where available)
+    # ---- Learning & building your own ----
     (python3.withPackages (ps: with ps; [
+      # Core scientific
       numpy
       scipy
       pandas
       matplotlib
+
+      # Deep learning
       torch
       torchvision
       torchaudio
+
+      # Transformers / fine-tuning / datasets
       transformers
       accelerate
-      sentencepiece
-      huggingface-hub
+      peft
+      bitsandbytes
       datasets
       tokenizers
       safetensors
+      huggingface-hub
+      sentencepiece
+
+      # Classic ML + utilities
+      scikit-learn
+      pillow
+      opencv4
+      tqdm
+      einops
+
+      # Notebooks
       jupyter
       jupyterlab
       ipython
       ipykernel
-      pillow
-      opencv4
-      scikit-learn
-      tqdm
-      einops
-      peft
-      bitsandbytes
     ]))
 
-    # Image / diffusion related helpers
-    # (full ComfyUI / Automatic1111 are usually run from their own clones)
-
-    # Useful monitoring and tools
+    # Monitoring and general tools
     nvtop
     btop
+    htop
     git
     wget
     curl
     rsync
     tmux
-    htop
   ];
 
-  # Optional: run Ollama as a system service (uncomment if you want it always available)
+  # Optional: run Ollama as a system service
   # services.ollama.enable = true;
   # services.ollama.acceleration = "cuda";
 }
