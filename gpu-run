@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# gpu-run — pick a common program (or type a command) and launch it with nvidia-offload
+set -euo pipefail
+
+# Prefer a GUI picker if available (Plasma), fall back to terminal menu
+if command -v kdialog >/dev/null 2>&1; then
+  choice=$(kdialog --menu "Run on RTX 5050 (nvidia-offload)" \
+    ollama "Ollama serve" \
+    jupyter "Jupyter Lab" \
+    python "Python REPL" \
+    steam "Steam" \
+    custom "Type a custom command")
+elif command -v zenity >/dev/null 2>&1; then
+  choice=$(zenity --list --title="Run on RTX 5050" --column="Program" \
+    "Ollama serve" "Jupyter Lab" "Python REPL" "Steam" "Custom command")
+else
+  echo "Select what to run on the RTX 5050:"
+  select choice in "Ollama serve" "Jupyter Lab" "Python REPL" "Steam" "Custom command"; do
+    break
+  done
+fi
+
+case "${choice:-}" in
+  ollama|"Ollama serve")
+    exec nvidia-offload ollama serve
+    ;;
+  jupyter|"Jupyter Lab")
+    exec nvidia-offload jupyter lab
+    ;;
+  python|"Python REPL")
+    exec nvidia-offload python
+    ;;
+  steam|Steam)
+    exec nvidia-offload steam
+    ;;
+  custom|"Custom command"|"Type a custom command")
+    if command -v kdialog >/dev/null 2>&1; then
+      cmd=$(kdialog --inputbox "Command to run with nvidia-offload")
+    else
+      read -rp "Command: " cmd
+    fi
+    exec nvidia-offload $cmd
+    ;;
+  *)
+    echo "Cancelled"
+    exit 0
+    ;;
+esac

@@ -57,7 +57,27 @@
     curl
     rsync
     tmux
+
+    # GUI helpers for the gpu-run script
+    kdePackages.kdialog
   ];
+
+  # Simple picker so you don't have to type nvidia-offload every time
+  environment.systemPackages = [
+    (pkgs.writeShellScriptBin "gpu-run" (builtins.readFile ./gpu-run))
+  ] ++ (with pkgs; [
+    ollama
+    llama-cpp
+    nvtop
+    btop
+    htop
+    git
+    wget
+    curl
+    rsync
+    tmux
+    kdePackages.kdialog
+  ]);
 
   # Optional: run Ollama as a system service
   # services.ollama.enable = true;
